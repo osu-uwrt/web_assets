@@ -9,31 +9,52 @@
 	</head>
 	<body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+		<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
 		<script>
 			const scene = new THREE.Scene();
+			const light = new THREE.AmbientLight( 0xffffff );
+			scene.add( light );
+
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
+			const renderer = new THREE.WebGLRenderer({ alpha: true });
+			renderer.setClearColor( 0x000000, 0 ); // the default
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
 			const geometry = new THREE.BoxGeometry();
 			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 			const cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
+			// scene.add( cube );
+			
+			const objLoader = new THREE.OBJLoader();
+  			const mtlLoader = new THREE.MTLLoader();
+			
+			let robot
+
+			mtlLoader.load('puddleslowres.mtl', (mtl) => {
+				mtl.preload();
+				objLoader.setMaterials(mtl);
+				objLoader.load('puddleslowres.obj', (mesh) => {
+					scene.add(mesh);
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
+					robot = mesh
+					animate();
+				});
+			});
 
 			camera.position.z = 5;
 
 			const animate = function () {
 				requestAnimationFrame( animate );
 
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+				robot.rotation.x += 0.01;
+				robot.rotation.y += 0.01;
+				// robot.rotation.z += 0.01;
 
 				renderer.render( scene, camera );
 			};
-
-			animate();
 		</script>
 	</body>
 </html>
