@@ -50,7 +50,7 @@
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
 
-				var robot;			
+				const robot;			
 				mtlLoader.load('puddleslowres.mtl', (mtl) => {
 					mtl.preload();
 					objLoader.setMaterials(mtl);
