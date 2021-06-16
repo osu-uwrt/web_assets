@@ -114,7 +114,7 @@
 											});
 														
 				sprite = new THREE.Sprite(spriteMaterial);
-				sprite.position.set(.1, .1, .1);
+				sprite.position.set(1, 1, 1);
 				sprite.scale.set(6, 6, 1);
 
 				scene.add(sprite);							
@@ -135,7 +135,7 @@
 				controls.maxDistance = 100;
 
 
-				vector = new THREE.Vector3(.1,.1,.1);
+				vector = new THREE.Vector3(1,1,1);
 				canvas = renderer.domElement; // `renderer` is a THREE.WebGLRenderer
 
 				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
@@ -188,7 +188,7 @@
 			}
 
 			function updateScreenPosition() {
-				const vector = new THREE.Vector3(.1, .1, .1);
+				const vector = new THREE.Vector3(1, 1, 1);
 				const canvas = renderer.domElement;
 
 				vector.project(camera);
