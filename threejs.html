@@ -54,7 +54,7 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script>
-			var renderer, scene, camera, vector;
+			var renderer, scene, camera, vector, canvas;
 
 			function init(){
 				
@@ -116,7 +116,7 @@
 
 
 				vector = new THREE.Vector3(3,3,3);
-				var canvas = renderer.domElement; // `renderer` is a THREE.WebGLRenderer
+				canvas = renderer.domElement; // `renderer` is a THREE.WebGLRenderer
 
 				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
 
