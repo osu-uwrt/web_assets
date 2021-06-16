@@ -20,7 +20,7 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
 		<script>
-
+			var renderer;
 
 			function init(){
 				
@@ -64,20 +64,16 @@
 				
 				
 
-				var labelRenderer;		
+						
 			
-				const renderer = new THREE.WebGLRenderer({ alpha: true });
+				renderer = new THREE.WebGLRenderer({ alpha: true });
 				renderer.setClearColor( 0x000000, 0 ); // the default
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
 				
 
-				labelRenderer = new THREE.CSS2DRenderer();
-				labelRenderer.setSize( window.innerWidth, window.innerHeight );
-				labelRenderer.domElement.style.position = 'absolute';
-				labelRenderer.domElement.style.top = '0px';
-				document.body.appendChild( labelRenderer.domElement );
+				
 
 				var controls = new THREE.OrbitControls( camera, labelRenderer.domElement );
 				controls.minDistance = 5;
