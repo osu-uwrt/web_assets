@@ -50,17 +50,18 @@
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
 
-				const robot;			
-				mtlLoader.load('puddleslowres.mtl', (mtl) => {
-					mtl.preload();
-					objLoader.setMaterials(mtl);
-					objLoader.load('puddleslowres.obj', (mesh) => {
-						scene.add(mesh);
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
-						robot = mesh
-						
-					});
-				});
+				var robot;			
+				
+				mtl = mtlLoader.load('puddleslowres.mtl');
+				mtl.preload();
+				objLoader.setMaterials(mtl);
+				mesh = objLoader.load('puddleslowres.obj');
+				scene.add(mesh);
+				mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
+				robot = mesh
+					
+				
+				
 				
 				var earthDiv = document.createElement( 'div' );
 
