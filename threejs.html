@@ -11,6 +11,36 @@
 				padding: 2px;
 				background: rgba( 0, 0, 0, .6 );
 			}
+
+			.annotation {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				margin-left: 15px;
+				margin-top: 15px;
+				padding: 1em;
+				width: 200px;
+				color: #fff;
+				background: rgba(0, 0, 0, 0.8);
+				border-radius: .5em;
+				font-size: 12px;
+				line-height: 1.2;
+				transition: opacity .5s;
+				&::before {
+					content: '1';
+					position: absolute;
+					top: -30px;
+					left: -30px;
+					width: 30px;
+					height: 30px;
+					border: 2px solid #fff;
+					border-radius: 50%;
+					font-size: 16px;
+					line-height: 30px;
+					text-align: center;
+					background: rgba(0, 0, 0, 0.8);
+				}
 		</style>
 	</head>
 	<body>
@@ -81,6 +111,17 @@
 				controls.maxDistance = 100;
 
 
+				var vector = new THREE.Vector3(3,3,3);
+				var canvas = renderer.domElement; // `renderer` is a THREE.WebGLRenderer
+
+				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
+
+				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
+				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
+
+				var annotation = document.querySelector('.annotation');
+				annotation.style.top = `${vector.y}px`;
+				annotation.style.left = `${vector.x}px`;
 				
 			
 				
@@ -94,6 +135,9 @@
 				// robot.rotation.x += 0.01;
 				// robot.rotation.y += 0.01;
 				// robot.rotation.z += 0.01;
+				var annotation = document.querySelector('.annotation');
+				annotation.style.top = `${vector.y}px`;
+				annotation.style.left = `${vector.x}px`;
 
 				renderer.render( scene, camera );
 			
@@ -108,5 +152,9 @@
 			
 			
 		</script>
+		<div class="annotation">
+			<p><strong>Cube</strong></p>
+			<p>In geometry, a cube is a three-dimensional solid object bounded by six square faces, facets or sides, with three meeting at each vertex.</p>
+		</div>
 	</body>
 </html>
