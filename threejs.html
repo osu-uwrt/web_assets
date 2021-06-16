@@ -14,6 +14,20 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
 		<script>
+
+			function animate() {
+				
+				requestAnimationFrame( animate );
+
+				robot.rotation.x += 0.01;
+				robot.rotation.y += 0.01;
+				// robot.rotation.z += 0.01;
+
+				renderer.render( scene, camera );
+			
+
+			}
+			
 			var labelRenderer;
 
 			var clock = new THREE.Clock();
@@ -31,30 +45,45 @@
 			camera.position.set(10,5,20);
 
 			
+
+			camera.position.z = 5;
+			
+			
+
+			var earthDiv = document.createElement( 'div' );
+			earthDiv.className = 'label';
+			earthDiv.textContent = 'Earth';
+			earthDiv.style.marginTop = '-1em';
+			var earthLabel = new THREE.CSS2DObject( earthDiv );
+			earthLabel.position.set( 0, 5, 0 );
+			robot.add( earthLabel );
+			
+
+			
 			const renderer = new THREE.WebGLRenderer({ alpha: true });
 			renderer.setClearColor( 0x000000, 0 ); // the default
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 
-			const geometry = new THREE.BoxGeometry();
-			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			const cube = new THREE.Mesh( geometry, material );
-			// scene.add( cube );
 			
+
+			labelRenderer = new THREE.CSS2DRenderer();
+			labelRenderer.setSize( window.innerWidth, window.innerHeight );
+			labelRenderer.domElement.style.position = 'absolute';
+			labelRenderer.domElement.style.top = '0px';
+			document.body.appendChild( labelRenderer.domElement );
+
+			var controls = new THREE.OrbitControls( camera, labelRenderer.domElement );
+			controls.minDistance = 5;
+			controls.maxDistance = 100;
+
+
 			const objLoader = new THREE.OBJLoader();
   			const mtlLoader = new THREE.MTLLoader();
 			
 			let robot
 			
-			const animate = function () {
-				requestAnimationFrame( animate );
-
-				robot.rotation.x += 0.01;
-				robot.rotation.y += 0.01;
-				// robot.rotation.z += 0.01;
-
-				renderer.render( scene, camera );
-			};
+			
 
 			mtlLoader.load('puddleslowres.mtl', (mtl) => {
 				mtl.preload();
@@ -67,31 +96,7 @@
 				});
 			});
 
-			camera.position.z = 5;
-
-
 			
-			
-			
-
-			var earthDiv = document.createElement( 'div' );
-			earthDiv.className = 'label';
-			earthDiv.textContent = 'Earth';
-			earthDiv.style.marginTop = '-1em';
-			var earthLabel = new THREE.CSS2DObject( earthDiv );
-			earthLabel.position.set( 0, 5, 0 );
-			robot.add( earthLabel );
-
-			labelRenderer = new THREE.CSS2DRenderer();
-			labelRenderer.setSize( window.innerWidth, window.innerHeight );
-			labelRenderer.domElement.style.position = 'absolute';
-			labelRenderer.domElement.style.top = '0px';
-			document.body.appendChild( labelRenderer.domElement );
-
-			var controls = new THREE.OrbitControls( camera, labelRenderer.domElement );
-			controls.minDistance = 5;
-			controls.maxDistance = 100;
-
 			
 		</script>
 	</body>
