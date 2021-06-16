@@ -57,7 +57,9 @@
 					mat = mtl;
 					
 				});
-
+				
+				console.log(mat)
+				
 				objLoader.setMaterials(mat);
 				objLoader.load('puddleslowres.obj', (mesh) => {
 					scene.add(mesh);
