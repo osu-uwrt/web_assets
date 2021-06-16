@@ -55,6 +55,10 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script>
 			var renderer, scene, camera, vector, canvas;
+			let sprite;
+			let mesh;
+			let spriteBehindObject;
+			const annotation = document.querySelector(".annotation");
 
 			function init(){
 				
@@ -96,13 +100,29 @@
 						
 					});
 				});
-				
-				
 
+				const numberTexture = new THREE.CanvasTexture(
+					document.querySelector("#number")
+				);
+				
+				const spriteMaterial = new THREE.SpriteMaterial({
+												map: numberTexture,
+												alphaTest: 0.5,
+												transparent: true,
+												depthTest: false,
+												depthWrite: false
+											});
+														
+				sprite = new THREE.Sprite(spriteMaterial);
+				sprite.position.set(.1, .1, .1);
+				sprite.scale.set(6, 6, 1);
+
+				scene.add(sprite);							
 						
 			
 				renderer = new THREE.WebGLRenderer({ alpha: true });
 				renderer.setClearColor( 0xffffff, 0 ); // the default
+				renderer.setPixelRatio(window.devicePixelRatio);
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
@@ -123,7 +143,7 @@
 				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
 				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
 
-				var annotation = document.querySelector('.annotation');
+				annotation = document.querySelector('.annotation');
 				annotation.style.top = `${vector.y}px`;
 				annotation.style.left = `${vector.x}px`;
 				
@@ -139,18 +159,46 @@
 				// robot.rotation.x += 0.01;
 				// robot.rotation.y += 0.01;
 				// robot.rotation.z += 0.01;
-				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
-
-				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
-				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
-
-				var annotation = document.querySelector('.annotation');
-				annotation.style.top = `${vector.y}px`;
-				annotation.style.left = `${vector.x}px`;
+				
+				
+				updateAnnotationOpacity();
+    			updateScreenPosition();
 
 				renderer.render( scene, camera );
 			
 
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+
+			function updateAnnotationOpacity() {
+				const meshDistance = camera.position.distanceTo(mesh.position);
+				const spriteDistance = camera.position.distanceTo(sprite.position);
+				spriteBehindObject = spriteDistance > meshDistance;
+				sprite.material.opacity = spriteBehindObject ? 0.25 : 1;
+
+				// Do you want a number that changes size according to its position?
+				// Comment out the following line and the `::before` pseudo-element.
+				sprite.material.opacity = 0;
+			}
+
+			function updateScreenPosition() {
+				const vector = new THREE.Vector3(.1, .1, .1);
+				const canvas = renderer.domElement;
+
+				vector.project(camera);
+
+				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
+				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
+
+				annotation.style.top = `${vector.y}px`;
+				annotation.style.left = `${vector.x}px`;
+				annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
 			}
 
 			init();
