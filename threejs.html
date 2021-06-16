@@ -45,6 +45,16 @@
   			const mtlLoader = new THREE.MTLLoader();
 			
 			let robot
+			
+			const animate = function () {
+				requestAnimationFrame( animate );
+
+				robot.rotation.x += 0.01;
+				robot.rotation.y += 0.01;
+				// robot.rotation.z += 0.01;
+
+				renderer.render( scene, camera );
+			};
 
 			mtlLoader.load('puddleslowres.mtl', (mtl) => {
 				mtl.preload();
@@ -60,6 +70,10 @@
 			camera.position.z = 5;
 
 
+			
+			
+			
+
 			var earthDiv = document.createElement( 'div' );
 			earthDiv.className = 'label';
 			earthDiv.textContent = 'Earth';
@@ -67,16 +81,6 @@
 			var earthLabel = new THREE.CSS2DObject( earthDiv );
 			earthLabel.position.set( 0, 5, 0 );
 			robot.add( earthLabel );
-			
-			const animate = function () {
-				requestAnimationFrame( animate );
-
-				robot.rotation.x += 0.01;
-				robot.rotation.y += 0.01;
-				// robot.rotation.z += 0.01;
-
-				renderer.render( scene, camera );
-			};
 
 			labelRenderer = new THREE.CSS2DRenderer();
 			labelRenderer.setSize( window.innerWidth, window.innerHeight );
