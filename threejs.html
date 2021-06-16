@@ -27,7 +27,7 @@
 			
 
 			}
-			
+
 			var labelRenderer;
 
 			var clock = new THREE.Clock();
@@ -48,16 +48,8 @@
 
 			camera.position.z = 5;
 			
-			
-
-			var earthDiv = document.createElement( 'div' );
-			earthDiv.className = 'label';
-			earthDiv.textContent = 'Earth';
-			earthDiv.style.marginTop = '-1em';
-			var earthLabel = new THREE.CSS2DObject( earthDiv );
-			earthLabel.position.set( 0, 5, 0 );
-			robot.add( earthLabel );
-			
+				
+		
 
 			
 			const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -80,9 +72,8 @@
 
 			const objLoader = new THREE.OBJLoader();
   			const mtlLoader = new THREE.MTLLoader();
-			
-			let robot
-			
+		
+			var robot;
 			
 
 			mtlLoader.load('puddleslowres.mtl', (mtl) => {
@@ -95,7 +86,15 @@
 					animate();
 				});
 			});
-
+			
+			var earthDiv = document.createElement( 'div' );
+			earthDiv.className = 'label';
+			earthDiv.textContent = 'Earth';
+			earthDiv.style.marginTop = '-1em';
+			var earthLabel = new THREE.CSS2DObject( earthDiv );
+			earthLabel.position.set( 0, 5, 0 );
+			robot.add( earthLabel );
+			
 			
 			
 		</script>
