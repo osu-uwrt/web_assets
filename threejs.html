@@ -20,7 +20,9 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
 		<script>
-
+			
+			var robot;
+			var mat;
 
 			function init(){
 				
@@ -50,8 +52,7 @@
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
 
-				var robot;
-				var mat;			
+							
 				mtlLoader.load('puddleslowres.mtl', (mtl) => {					
 					mtl.preload();
 					mat = mtl;
@@ -59,7 +60,7 @@
 				});
 				
 				console.log(mat)
-				
+
 				objLoader.setMaterials(mat);
 				objLoader.load('puddleslowres.obj', (mesh) => {
 					scene.add(mesh);
