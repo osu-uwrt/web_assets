@@ -51,11 +51,11 @@
 				const mtlLoader = new THREE.MTLLoader();
 
 				var robot;			
-				
-				mtl = mtlLoader.load('puddleslowres.mtl');
+
+				var mtl = mtlLoader.load('puddleslowres.mtl');
 				mtl.preload();
 				objLoader.setMaterials(mtl);
-				mesh = objLoader.load('puddleslowres.obj');
+				var mesh = objLoader.load('puddleslowres.obj');
 				scene.add(mesh);
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
 				robot = mesh
