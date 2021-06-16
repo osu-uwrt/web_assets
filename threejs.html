@@ -20,9 +20,7 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
 		<script>
-			
-			var robot;
-			var mat;
+
 
 			function init(){
 				
@@ -52,31 +50,19 @@
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
 
-							
-				mtlLoader.load('puddleslowres.mtl', (mtl) => {					
+				var robot;			
+				mtlLoader.load('puddleslowres.mtl', (mtl) => {
 					mtl.preload();
-					mat = mtl;
-					
+					objLoader.setMaterials(mtl);
+					objLoader.load('puddleslowres.obj', (mesh) => {
+						scene.add(mesh);
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
+						robot = mesh
+						
+					});
 				});
 				
-				console.log(mat)
-
-				objLoader.setMaterials(mat);
-				objLoader.load('puddleslowres.obj', (mesh) => {
-					scene.add(mesh);
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
-					robot = mesh
-					console.log(robot)
-				});
 				
-				var earthDiv = document.createElement( 'div' );
-
-				earthDiv.className = 'label';
-				earthDiv.textContent = 'THIS IS THE ROBOT SEND HELP I WANT TO SEE IT';
-				earthDiv.style.marginTop = '-1em';
-				var earthLabel = new THREE.CSS2DObject( earthDiv );
-				earthLabel.position.set( 3, 3, 3 );
-				robot.add( earthLabel );
 
 				var labelRenderer;		
 			
@@ -96,6 +82,10 @@
 				var controls = new THREE.OrbitControls( camera, labelRenderer.domElement );
 				controls.minDistance = 5;
 				controls.maxDistance = 100;
+
+
+				
+			
 				
 
 			}
