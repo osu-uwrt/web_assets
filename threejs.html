@@ -139,9 +139,14 @@
 				// robot.rotation.x += 0.01;
 				// robot.rotation.y += 0.01;
 				// robot.rotation.z += 0.01;
+				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
+
+				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
+				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
+
 				var annotation = document.querySelector('.annotation');
-				annotation.style.top = vector.y + `px`;
-				annotation.style.left = vector.x + `px`;
+				annotation.style.top = `${vector.y}px`;
+				annotation.style.left = `${vector.x}px`;
 
 				renderer.render( scene, camera );
 			
