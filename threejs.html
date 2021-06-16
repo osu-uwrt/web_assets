@@ -25,6 +25,7 @@
 			function init(){
 				
 				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xff0000 );
 
 				const light = new THREE.AmbientLight( 0xffffff );
 				scene.add( light );
@@ -38,7 +39,7 @@
 				scene.add( light1 );
 
 				const light2 = new THREE.DirectionalLight( 0xffffff, 0.5 );
-				light2.position.set( - 1, - 1, 1 );
+				light2.position.set( - 1, - 1, -1 );
 				scene.add( light2 );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -67,7 +68,7 @@
 						
 			
 				renderer = new THREE.WebGLRenderer({ alpha: true });
-				renderer.setClearColor( 0x000000, 0 ); // the default
+				renderer.setClearColor( 0xffffff, 0 ); // the default
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
