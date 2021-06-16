@@ -5,6 +5,12 @@
 		<title>My first three.js app</title>
 		<style>
 			body { margin: 0; }
+			.label {
+				color: #FFF;
+				font-family: sans-serif;
+				padding: 2px;
+				background: rgba( 0, 0, 0, .6 );
+			}
 		</style>
 	</head>
 	<body>
@@ -91,7 +97,7 @@
 					var earthLabel = new THREE.CSS2DObject( earthDiv );
 					earthLabel.position.set( 0, 5, 0 );
 					robot.add( earthLabel );
-					
+
 					animate();
 				});
 			});
