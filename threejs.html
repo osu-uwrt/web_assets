@@ -50,19 +50,20 @@
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
 
-				var robot;			
-				mtlLoader.load('puddleslowres.mtl', (mtl) => {
-					var r;
+				var robot;
+				var mat;			
+				mtlLoader.load('puddleslowres.mtl', (mtl) => {					
 					mtl.preload();
-					objLoader.setMaterials(mtl);
-					objLoader.load('puddleslowres.obj', (mesh) => {
-						scene.add(mesh);
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
-						r = mesh
-						console.log(r)
-					});
-					robot = r
-					console.log(r)
+					mat = mtl;
+					
+				});
+
+				objLoader.setMaterials(mat);
+				objLoader.load('puddleslowres.obj', (mesh) => {
+					scene.add(mesh);
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
+					robot = mesh
+					console.log(robot)
 				});
 				
 				var earthDiv = document.createElement( 'div' );
