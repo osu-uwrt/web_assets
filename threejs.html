@@ -59,6 +59,10 @@
 			let mesh;
 			let spriteBehindObject;
 			const annotation = document.querySelector(".annotation");
+			
+			function meshSetter(m){
+				mesh = m
+			}
 
 			function init(){
 				
@@ -88,15 +92,17 @@
 
 				const objLoader = new THREE.OBJLoader();
 				const mtlLoader = new THREE.MTLLoader();
+				mesh = new THREE.Mesh();
 
 				var robot;			
-				mtlLoader.load('puddleslowres.mtl', (mtl) => {
+				mtlLoader.load('puddleslowres.mtl', (mtl, self) => {
 					mtl.preload();
 					objLoader.setMaterials(mtl);
-					objLoader.load('puddleslowres.obj', (mesh) => {
+					objLoader.load('puddleslowres.obj', (mesh, self) => {
 						scene.add(mesh);
 						mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
 						robot = mesh
+						self.meshSetter(mesh);
 						
 					});
 				});
