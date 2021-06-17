@@ -132,21 +132,7 @@
 
 				var controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.minDistance = 5;
-				controls.maxDistance = 100;
-
-
-				vector = new THREE.Vector3(1,1,1);
-				canvas = renderer.domElement; // `renderer` is a THREE.WebGLRenderer
-
-				vector.project(camera); // `camera` is a THREE.PerspectiveCamera
-
-				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
-				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
-
-				
-				annotation.style.top = `${vector.y}px`;
-				annotation.style.left = `${vector.x}px`;
-				
+				controls.maxDistance = 100;		
 			
 				
 
@@ -198,7 +184,7 @@
 
 				annotation.style.top = `${vector.y}px`;
 				annotation.style.left = `${vector.x}px`;
-				annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
+				//annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
 			}
 
 			init();
