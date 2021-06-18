@@ -46,13 +46,13 @@
 		<div id="annotation1" class="annotation">
 			<p><strong>Sensor Optimization</strong></p>
 			<p>Sensor Optimization is an important part of any Robot</p>
-			<!-- <iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<div id="annotation2" class="annotation">
 			<p><strong>Thruster Placement</strong></p>
 			<p>Placement of Thrusters are really important to robots</p>
-			<!-- <iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -126,13 +126,13 @@
 											});
 														
 				sprite1 = new THREE.Sprite(spriteMaterial);
-				sprite1.position.set(2, 2, 1);
+				sprite1.position.set(-2, 1, -1);
 				sprite1.scale.set(6, 6, 1);
 
 				scene.add(sprite1);	
 				
 				sprite2 = new THREE.Sprite(spriteMaterial);
-				sprite2.position.set(-1.5, -1.5, 1);
+				sprite2.position.set(1.5, 1.5, 1);
 				sprite2.scale.set(6, 6, 1);
 
 				scene.add(sprite2);	
@@ -198,8 +198,8 @@
 			}
 
 			function updateScreenPosition() {
-				const vector1 = new THREE.Vector3(2, 2, 1);
-				const vector2 = new THREE.Vector3(-1.5,-1.5,1);
+				const vector1 = new THREE.Vector3(-2, 1, -1);
+				const vector2 = new THREE.Vector3(1.5,1.5,1);
 				const canvas = renderer.domElement;
 
 				vector1.project(camera);
