@@ -125,7 +125,10 @@
 
 				scene.add(sprite);							
 						
-			
+				var axis = new THREE.AxisHelper(5);
+    			scene.add(axis);
+
+
 				renderer = new THREE.WebGLRenderer({ alpha: true });
 				renderer.setClearColor( 0xffffff, 0 ); // the default
 				renderer.setPixelRatio(window.devicePixelRatio);
@@ -180,7 +183,7 @@
 			}
 
 			function updateScreenPosition() {
-				const vector = new THREE.Vector3(1, 1, 1);
+				const vector = new THREE.Vector3(3, 3, 3);
 				const canvas = renderer.domElement;
 
 				vector.project(camera);
@@ -190,7 +193,7 @@
 
 				annotation.style.top = `${vector.y}px`;
 				annotation.style.left = `${vector.x}px`;
-				annotation.style.opacity = spriteBehindObject ? 0.25 : 1;
+				annotation.style.opacity = spriteBehindObject ? 0 : 1;
 			}
 
 			init();
