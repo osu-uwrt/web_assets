@@ -2,10 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>My first three.js app</title>
+		<title>Puddles Walkaround</title>
 		<style>
-			body { margin: 0; }
-			.label {
+			body { margin: 0; }ww
 				color: #FFF;
 				font-family: sans-serif;
 				padding: 2px;
@@ -44,9 +43,10 @@
 		</style>
 	</head>
 	<body>
-		<div class="annotation">
-			<p><strong>Cube</strong></p>
-			<p>In geometry, a cube is a three-dimensional solid object bounded by six square faces, facets or sides, with three meeting at each vertex.</p>
+		<div id="annotation1" class="annotation">
+			<p><strong>Sensor Optimization</strong></p>
+			<p>Sensor Optimization is an important part of any Robot</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -58,7 +58,7 @@
 			let sprite;
 			let mesh;
 			let spriteBehindObject;
-			const annotation = document.querySelector(".annotation");
+			var annotation1 = document.querySelector("annotation1");
 			
 			function meshSetter(m){
 				mesh = m
@@ -72,7 +72,7 @@
 				const light = new THREE.AmbientLight( 0xffffff );
 				scene.add( light );
 
-				var dirLight = new THREE.DirectionalLight( 0xffffff );
+				var dirLight = new THREE.DirectionalLight( 0xfdf3c6 );
 				dirLight.position.set( 0, 0, 1 );
 				scene.add( dirLight );
 
@@ -81,7 +81,7 @@
 				scene.add( light1 );
 
 				const light2 = new THREE.DirectionalLight( 0xffffff, 0.5 );
-				light2.position.set( - 1, - 1, -1 );
+				light2.position.set( - 1, - 1, 1 );
 				scene.add( light2 );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -183,17 +183,26 @@
 			}
 
 			function updateScreenPosition() {
-				const vector = new THREE.Vector3(3, 3, 3);
+				const vector1 = new THREE.Vector3(2, 2, 1);
+				const vector2 = new THREE.Vector3(-1.5,-1.5,1);
 				const canvas = renderer.domElement;
 
-				vector.project(camera);
+				vector1.project(camera);
+				vector2.project(camera);
 
-				vector.x = Math.round((0.5 + vector.x / 2) * (canvas.width / window.devicePixelRatio));
-				vector.y = Math.round((0.5 - vector.y / 2) * (canvas.height / window.devicePixelRatio));
+				vector1.x = Math.round((0.5 + vector1.x / 2) * (canvas.width / window.devicePixelRatio));
+				vector1.y = Math.round((0.5 - vector1.y / 2) * (canvas.height / window.devicePixelRatio));
 
-				annotation.style.top = `${vector.y}px`;
-				annotation.style.left = `${vector.x}px`;
-				annotation.style.opacity = spriteBehindObject ? 0 : 1;
+				vector2.x = Math.round((0.5 + vector2.x / 2) * (canvas.width / window.devicePixelRatio));
+				vector2.y = Math.round((0.5 - vector2.y / 2) * (canvas.height / window.devicePixelRatio));
+
+				annotation1.style.top = `${vector1.y}px`;
+				annotation1.style.left = `${vector1.x}px`;
+				annotation1.style.opacity = spriteBehindObject ? 0 : 1;
+
+				annotation2.style.top = `${vector2.y}px`;
+				annotation2.style.left = `${vector2.x}px`;
+				annotation2.style.opacity = spriteBehindObject ? 0 : 1;
 			}
 
 			init();
