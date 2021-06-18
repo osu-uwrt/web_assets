@@ -21,6 +21,10 @@
 			opacity: 0;
 		}
 
+		#number {
+			display: none;
+		}
+
 		#loader {
 			display: block;
 			position: relative;
@@ -217,7 +221,7 @@
 
 				const objLoader = new THREE.OBJLoader(loadingManager);
 				const mtlLoader = new THREE.MTLLoader(loadingManager);
-				mesh = new THREE.Mesh();
+				
 
 				var robot;			
 				mtlLoader.load('puddleslowres.mtl', (mtl, self) => {
@@ -271,7 +275,13 @@
 				controls.minDistance = 5;
 				controls.maxDistance = 20;		
 			
-				
+					window.addEventListener( 'resize', onWindowResize, false );
+											
+			}
+			
+			function onTransitionEnd( event ) {
+
+				event.target.remove();
 
 			}
 
