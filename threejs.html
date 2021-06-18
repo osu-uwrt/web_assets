@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Puddles Walkaround</title>
-		<style>
-
-		
+		<style>	
 
 		#loading-screen {
 			position: absolute;
@@ -234,7 +232,7 @@
 						
 
 				renderer = new THREE.WebGLRenderer({ alpha: true });
-				renderer.setClearColor( 0xffffff, 0 ); // the default
+				renderer.setClearColor( 0xffffff ); // the default
 				renderer.setPixelRatio(window.devicePixelRatio);
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
@@ -245,7 +243,7 @@
 
 				var controls = new THREE.OrbitControls( camera, renderer.domElement );
 				controls.minDistance = 5;
-				controls.maxDistance = 100;		
+				controls.maxDistance = 20;		
 			
 				
 
@@ -253,11 +251,7 @@
 
 			function animate() {
 				
-				requestAnimationFrame( animate );
-
-				// robot.rotation.x += 0.01;
-				// robot.rotation.y += 0.01;
-				// robot.rotation.z += 0.01;
+				requestAnimationFrame( animate, renderer.domElement );
 				
 				
 				updateAnnotationOpacity();
