@@ -46,13 +46,13 @@
 		<div id="annotation1" class="annotation">
 			<p><strong>Sensor Optimization</strong></p>
 			<p>Sensor Optimization is an important part of any Robot</p>
-			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<!-- <iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 		</div>
 
 		<div id="annotation2" class="annotation">
 			<p><strong>Thruster Placement</strong></p>
 			<p>Placement of Thrusters are really important to robots</p>
-			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<!-- <iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -61,7 +61,7 @@
 		<script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 		<script>
 			var renderer, scene, camera, vector, canvas;
-			let sprite1;
+			let sprite1, sprite2;
 			let mesh;
 			let annotation1BehindObject, annotation2BehindObject;
 			var annotation1 = document.querySelector("#annotation1");
@@ -213,11 +213,11 @@
 
 				annotation1.style.top = `${vector1.y}px`;
 				annotation1.style.left = `${vector1.x}px`;
-				annotation1.style.opacity = spriteBehindObject ? 0 : 1;
+				annotation1.style.opacity = sprite1BehindObject ? 0 : 1;
 
 				annotation2.style.top = `${vector2.y}px`;
 				annotation2.style.left = `${vector2.x}px`;
-				annotation2.style.opacity = spriteBehindObject ? 0 : 1;
+				annotation2.style.opacity = sprite2BehindObject ? 0 : 1;
 			}
 
 			init();
