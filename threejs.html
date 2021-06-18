@@ -43,16 +43,16 @@
 		</style>
 	</head>
 	<body>
-		<div id="annotation1" class="annotation">
+		<div id="annotation1" class=".annotation">
 			<p><strong>Sensor Optimization</strong></p>
 			<p>Sensor Optimization is an important part of any Robot</p>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
-		<div id="annotation2" class="annotation">
+		<div id="annotation2" class=".annotation">
 			<p><strong>Thruster Placement</strong></p>
 			<p>Placement of Thrusters are really important to robots</p>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="150" height="110" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -184,8 +184,8 @@
 			}
 
 			function updateAnnotationOpacity() {
-				const meshDistance = camera.position.distanceTo(mesh.position);
-				const spriteDistance = camera.position.distanceTo(sprite1.position);
+				var meshDistance = camera.position.distanceTo(mesh.position);
+				var spriteDistance = camera.position.distanceTo(sprite1.position);
 				sprite1BehindObject = spriteDistance > meshDistance;
 				sprite1.material.opacity = sprite1BehindObject ? 0 : 1;
 				
