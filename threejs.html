@@ -221,7 +221,7 @@
 
 				const objLoader = new THREE.OBJLoader(loadingManager);
 				const mtlLoader = new THREE.MTLLoader(loadingManager);
-				
+				mesh = new THREE.mesh();
 
 				var robot;			
 				mtlLoader.load('puddleslowres.mtl', (mtl, self) => {
@@ -278,7 +278,7 @@
 					window.addEventListener( 'resize', onWindowResize, false );
 											
 			}
-			
+
 			function onTransitionEnd( event ) {
 
 				event.target.remove();
