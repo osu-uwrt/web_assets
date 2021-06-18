@@ -221,7 +221,7 @@
 
 				const objLoader = new THREE.OBJLoader(loadingManager);
 				const mtlLoader = new THREE.MTLLoader(loadingManager);
-				mesh = new THREE.mesh();
+				mesh = new THREE.Mesh();
 
 				var robot;			
 				mtlLoader.load('puddleslowres.mtl', (mtl, self) => {
