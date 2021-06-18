@@ -137,6 +137,7 @@
 			<p>Placement of Thrusters are really important to robots</p>
 			<iframe width="300" height="220" src="https://www.youtube.com/embed/SjqPDysoeU0" title="YouTube video player" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
+		<canvas id="number" width="64" height="64"></canvas>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 		<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
@@ -188,6 +189,31 @@
 				camera.position.set(10,5,5);			
 
 				camera.position.z = 5;
+
+				const canvas = document.getElementById('number');
+				const ctx = canvas.getContext('2d');
+				const x = 32;
+				const y = 32;
+				const radius = 30;
+				const startAngle = 0;
+				const endAngle = Math.PI * 2;
+
+				ctx.fillStyle = 'rgb(0, 0, 0)';
+				ctx.beginPath();
+				ctx.arc(x, y, radius, startAngle, endAngle);
+				ctx.fill();
+
+				ctx.strokeStyle = 'rgb(255, 255, 255)';
+				ctx.lineWidth = 3;
+				ctx.beginPath();
+				ctx.arc(x, y, radius, startAngle, endAngle);
+				ctx.stroke();
+
+				ctx.fillStyle = 'rgb(255, 255, 255)';
+				ctx.font = '32px sans-serif';
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				ctx.fillText('1', x, y);
 
 				const objLoader = new THREE.OBJLoader(loadingManager);
 				const mtlLoader = new THREE.MTLLoader(loadingManager);
