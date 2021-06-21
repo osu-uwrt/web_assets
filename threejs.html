@@ -319,6 +319,7 @@
 				sprite1BehindObject = spriteDistance > meshDistance;
 				sprite1.material.opacity = sprite1BehindObject ? 0 : 1;
 				
+				
 				spriteDistance = camera.position.distanceTo(sprite2.position);
 				sprite2BehindObject = spriteDistance > meshDistance;
 				sprite2.material.opacity = sprite2BehindObject ? 0 : 1;
@@ -344,10 +345,12 @@
 				annotation1.style.top = `${vector1.y}px`;
 				annotation1.style.left = `${vector1.x}px`;
 				annotation1.style.opacity = sprite1BehindObject ? 0 : 1;
+				annotation1.style.display = sprite1BehindObject ? "none" : "block";
 
 				annotation2.style.top = `${vector2.y}px`;
 				annotation2.style.left = `${vector2.x}px`;
 				annotation2.style.opacity = sprite2BehindObject ? 0 : 1;
+				annotation2.style.display = sprite2BehindObject ? "none" : "block";
 			}
 
 			init();
