@@ -232,10 +232,10 @@
 				mesh = new THREE.Mesh();
 
 				var robot;			
-				mtlLoader.load('puddleslowres.mtl', (mtl, self) => {
+				mtlLoader.load('puddles.mtl', (mtl, self) => {
 					mtl.preload();
 					objLoader.setMaterials(mtl);
-					objLoader.load('puddleslowres.obj', (mesh, self) => {
+					objLoader.load('puddles.obj', (mesh, self) => {
 						scene.add(mesh);
 						mesh.scale.x = mesh.scale.y = mesh.scale.z = 5
 						robot = mesh
